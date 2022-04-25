@@ -10,7 +10,7 @@ pipeline {
         stage('Deliver') {
             steps {
               withCredentials([sshUserPrivateKey(credentialsId: "vagrant", keyFileVariable: 'keyfile')]) {
-                  sh 'ansible-playbook -private-key=${keyfile} -i hosts.ini playbook.yml'
+                  sh 'ansible-playbook --private-key=${keyfile} -i hosts.ini playbook.yml'
               }
             }
         }
