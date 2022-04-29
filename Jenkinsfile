@@ -13,10 +13,10 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-              SShagent(['vagrant']) {
+              sshagent(['vagrant']) {
                   sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ${DEPLOY_TO}.ini playbook.yml'
               }
             }
-        }
+        
     }
 }
