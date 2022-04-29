@@ -14,7 +14,7 @@ pipeline {
         stage('Deliver') {
             steps {
               sshagent(['vagrant']) {
-                  sh 'ansible-playbook -i ${DEPLOY_TO}.ini playbook.yml'
+                  sh 'ansible-playbook --private-key=${keyfile} -i ${DEPLOY_TO}.ini playbook.yml'
               }
             }
         }
