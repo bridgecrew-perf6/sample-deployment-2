@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-              sshagent(['vagrant']) {
+              withCredentials([sshUserPrivateKey(credentialsId: "vagrant", keyFileVariable: 'keyfile')]) {
                   sh 'ansible-playbook --private-key=${keyfile} -i ${DEPLOY_TO}.ini playbook.yml'
               }
             }
