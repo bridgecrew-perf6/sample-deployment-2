@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    parameters {
+         choice choices: ['qa', 'production'], description: 'Select environment for deployment', name: 'DEPLOY_TO'
+       }
 
     stages {
         stage('Copy artifact') {
